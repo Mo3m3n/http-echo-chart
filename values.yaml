@@ -1,0 +1,34 @@
+---
+# Default values for http-echo.
+
+## Deployment ressource
+replicaCount: 1
+
+image:
+  repository: mo3m3n/http-echo
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+## Additional labels to add to the pod container metadata
+podLabels: {}
+#  key: value
+
+## Service Ressource
+service:
+  type: ClusterIP
+  httpPort: 8080
+  httpsPort: 8443
+
+## Ingress ressource
+ingress:
+  enabled: true
+#  Host: {{.Release.Name}}.k8s.local
+  servicePort: http
+  annotations: {}
+#   kubernetes.io/ingress.class: ""
+  tls: {}
+#   - secretName: certs/www.kube.dev.h.lo
+#     hosts:
+#     - www.k8s.local
+
+
