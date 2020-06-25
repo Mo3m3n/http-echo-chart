@@ -23,6 +23,7 @@ spec:
       secretName: {{ .secretName }}
   {{- end }}
 {{- end }}
+{{- if not .Values.ingress.defaultBackend }}
   rules:
     - host: {{ include "ingress-host" . }}
       http:
@@ -31,4 +32,9 @@ spec:
             backend:
               serviceName: {{ include "http-echo.fullname" . }}
               servicePort: {{.Values.ingress.servicePort}}
+{{- else }}
+            backend:
+              serviceName: {{ include "http-echo.fullname" . }}
+              servicePort: {{.Values.ingress.servicePort}}
+{{- end }}
 {{- end }}

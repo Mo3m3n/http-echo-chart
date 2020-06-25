@@ -22,7 +22,8 @@ service:
 ## Ingress ressource
 ingress:
   enabled: true
-#  Host: {{.Release.Name}}.k8s.local
+#  host: {{.Release.Name}}.k8s.local
+#  defaultBackend: false
   servicePort: http
   annotations: {}
 #   kubernetes.io/ingress.class: ""
